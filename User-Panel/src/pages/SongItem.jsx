@@ -15,7 +15,7 @@ const SongItem = ({ song }) => {
       <div className="relative overflow-hidden rounded-xl">
 
         <img
-          src={`http://localhost:8080/images/${song.image}`}
+          src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
           alt={song.title}
           className="w-full h-56 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
         />

@@ -70,7 +70,7 @@ const Player = () => {
               <div className="absolute inset-0 bg-green-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
               <img
-                src={`http://localhost:8080/images/${song.image}`}
+                src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
                 alt={song.title}
                 className="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-3xl object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105"
               />
@@ -149,7 +149,7 @@ const Player = () => {
                 controls
                 autoPlay
                 className="w-full custom-audio"
-                src={`http://localhost:8080/audio/${song.audio}`}
+                src={`${import.meta.env.VITE_AUDIO_URL}${song.audio}`}
               />
 
             </div>

@@ -15,7 +15,7 @@ const AlbumItem = ({ album }) => {
       <div className="relative overflow-hidden rounded-2xl">
 
         <img
-          src={`http://localhost:8080/images/${album.image}`}
+          src={`${import.meta.env.VITE_IMAGE_URL}${album.image}`}
           alt={album.name}
           className="w-full h-60 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-110"
         />

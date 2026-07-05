@@ -165,7 +165,7 @@ const ListSongs = () => {
                 <div className="relative">
 
                   <img
-                    src={`http://localhost:8080/images/${song.image}`}
+                    src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
                     alt={song.title}
                     className="w-28 h-28 object-cover rounded-2xl shadow-2xl transition duration-300 group-hover:scale-105"
                   />
@@ -208,7 +208,7 @@ const ListSongs = () => {
                 <audio
                   controls
                   className="w-[280px]"
-                  src={`http://localhost:8080/audio/${song.audio}`}
+                  src={`${import.meta.env.VITE_AUDIO_URL}${song.audio}`}
                 />
 
                 {/* Delete Button */}

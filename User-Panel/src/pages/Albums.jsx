@@ -80,7 +80,7 @@ const Albums = () => {
         <div className="relative group">
 
           <img
-            src={`http://localhost:8080/images/${album.image}`}
+            src={`${import.meta.env.VITE_IMAGE_URL}${album.image}`}
             alt={album.name}
             className="w-72 h-72 object-cover rounded-3xl shadow-2xl transition duration-500 group-hover:scale-105"
           />
@@ -154,7 +154,7 @@ const Albums = () => {
               <div className="relative">
 
                 <img
-                  src={`http://localhost:8080/images/${song.image}`}
+                  src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
                   alt={song.title}
                   className="w-24 h-24 object-cover rounded-xl"
                 />
@@ -186,7 +186,7 @@ const Albums = () => {
                 <audio
                   controls
                   className="w-full"
-                  src={`http://localhost:8080/audio/${song.audio}`}
+                  src={`${import.meta.env.VITE_AUDIO_URL}${song.audio}`}
                 />
 
               </div>

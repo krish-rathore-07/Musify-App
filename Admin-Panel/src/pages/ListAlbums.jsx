@@ -146,7 +146,7 @@ const ListAlbums = () => {
                 <div className="relative">
 
                   <img
-                    src={`http://localhost:8080/images/${album.image}`}
+                    src={`${import.meta.env.VITE_IMAGE_URL}${album.image}`}
                     alt={album.name}
                     className="w-28 h-28 object-cover rounded-2xl shadow-2xl transition duration-300 group-hover:scale-105"
                   />
