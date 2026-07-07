@@ -1,3 +1,62 @@
+// import { useNavigate } from "react-router-dom";
+// import { Play } from "lucide-react";
+
+// const SongItem = ({ song }) => {
+
+//   const navigate = useNavigate();
+
+//   return (
+//     <div
+//       onClick={() => navigate("/player", { state: { song } })}
+//       className="group min-w-[220px] bg-[#181818] hover:bg-[#282828] p-4 rounded-2xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2"
+//     >
+
+//       {/* Image Container */}
+//       <div className="relative overflow-hidden rounded-xl">
+
+//         <img
+//           src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
+//           alt={song.title}
+//           className="w-full h-56 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
+//         />
+
+//         {/* Play Button */}
+//         <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition duration-300">
+
+//           <div className="bg-green-500 hover:bg-green-400 p-3 rounded-full shadow-xl">
+
+//             <Play
+//               fill="black"
+//               className="text-black w-5 h-5"
+//             />
+
+//           </div>
+
+//         </div>
+
+//       </div>
+
+//       {/* Song Details */}
+//       <div className="mt-4">
+
+//         <h2 className="text-white text-lg font-bold truncate">
+//           {song.title || "Unknown Song"}
+//         </h2>
+
+//         <p className="text-gray-400 text-sm mt-1 line-clamp-2">
+//           {song.artist || "No Description"}
+//         </p>
+
+//       </div>
+
+//     </div>
+//   );
+// };
+
+// export default SongItem;
+
+
+
 import { useNavigate } from "react-router-dom";
 import { Play } from "lucide-react";
 
@@ -8,7 +67,7 @@ const SongItem = ({ song }) => {
   return (
     <div
       onClick={() => navigate("/player", { state: { song } })}
-      className="group min-w-[220px] bg-[#181818] hover:bg-[#282828] p-4 rounded-2xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2"
+      className="group w-full min-w-[160px] sm:min-w-[180px] md:min-w-[210px] lg:min-w-[220px] bg-[#181818] hover:bg-[#282828] p-3 sm:p-4 rounded-2xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-2"
     >
 
       {/* Image Container */}
@@ -17,17 +76,17 @@ const SongItem = ({ song }) => {
         <img
           src={`${import.meta.env.VITE_IMAGE_URL}${song.image}`}
           alt={song.title}
-          className="w-full h-56 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-40 sm:h-48 md:h-52 lg:h-56 object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
         />
 
         {/* Play Button */}
         <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition duration-300">
 
-          <div className="bg-green-500 hover:bg-green-400 p-3 rounded-full shadow-xl">
+          <div className="bg-green-500 hover:bg-green-400 p-2.5 sm:p-3 rounded-full shadow-xl">
 
             <Play
               fill="black"
-              className="text-black w-5 h-5"
+              className="text-black w-4 h-4 sm:w-5 sm:h-5"
             />
 
           </div>
@@ -37,13 +96,13 @@ const SongItem = ({ song }) => {
       </div>
 
       {/* Song Details */}
-      <div className="mt-4">
+      <div className="mt-3 sm:mt-4">
 
-        <h2 className="text-white text-lg font-bold truncate">
+        <h2 className="text-white text-base sm:text-lg font-bold truncate">
           {song.title || "Unknown Song"}
         </h2>
 
-        <p className="text-gray-400 text-sm mt-1 line-clamp-2">
+        <p className="text-gray-400 text-xs sm:text-sm mt-1 line-clamp-2">
           {song.artist || "No Description"}
         </p>
 
