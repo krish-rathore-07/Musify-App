@@ -177,7 +177,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Music2, ShieldCheck } from "lucide-react";
-
+import toast from "react-hot-toast";
 import api from "../services/api";
 
 const Register = () => {
@@ -188,36 +188,43 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleRegister = async (e) => {
+const handleRegister = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    if (password !== confirmPassword) {
+  if (password !== confirmPassword) {
 
-      alert("Passwords do not match");
+    toast.error("Passwords do not match");
 
-      return;
-    }
+    return;
+  }
 
-    try {
+  const loadingToast = toast.loading("Creating your account...");
 
-      await api.post("/api/auth/register", {
-        email,
-        password,
-        role: "USER",
-      });
+  try {
 
-      alert("Registration Successful");
+    await api.post("/api/auth/register", {
+      email,
+      password,
+      role: "USER",
+    });
 
-      navigate("/");
+    toast.success("Registration Successful 🎉", {
+      id: loadingToast,
+    });
 
-    } catch (error) {
+    navigate("/");
 
-      console.log(error);
+  } catch (error) {
 
-      alert("Registration Failed");
-    }
-  };
+    console.log(error);
+
+    toast.error("Registration Failed", {
+      id: loadingToast,
+    });
+
+  }
+};
 
   return (
     <div className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden px-4 py-8">

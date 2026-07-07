@@ -141,7 +141,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Music2 } from "lucide-react";
-
+import toast from "react-hot-toast";
 import api from "../services/api";
 
 const Login = () => {
@@ -153,29 +153,35 @@ const Login = () => {
 
   const handleLogin = async (e) => {
 
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
+  const loadingToast = toast.loading("Signing you in...");
 
-      const response = await api.post("/api/auth/login", {
-        email,
-        password,
-      });
+  try {
 
-      localStorage.setItem("user", JSON.stringify(response.data));
+    const response = await api.post("/api/auth/login", {
+      email,
+      password,
+    });
 
-      alert("Login Successful");
+    localStorage.setItem("user", JSON.stringify(response.data));
 
-      navigate("/home");
+    toast.success("Login Successful 🎉", {
+      id: loadingToast,
+    });
 
-    } catch (error) {
+    navigate("/home");
 
-      console.log(error);
+  } catch (error) {
 
-      alert("Invalid Email or Password");
-    }
-  };
+    console.log(error);
 
+    toast.error("Invalid Email or Password", {
+      id: loadingToast,
+    });
+
+  }
+};
   return (
     <div className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden px-4 py-8">
 

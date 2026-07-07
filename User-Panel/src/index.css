@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@media (max-width: 640px) {
+
+  .go3958317564 {
+    width: calc(100vw - 30px) !important;
+    max-width: calc(100vw - 30px) !important;
+    margin: 0 auto !important;
+  }
+
+}
