@@ -126,7 +126,7 @@ const totalArtists = new Set(
         </div>
 
         {/* Stats */}
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 grid-cols-2 sm:grid-cols-2 xl:grid-cols-4">
           {stats.map((item) => {
             const Icon = item.icon;
 
