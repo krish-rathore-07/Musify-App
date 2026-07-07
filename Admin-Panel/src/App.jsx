@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import Dashboard from "./pages/Dashboard";
+import DashboardHome from "./pages/DashboardHome";
 
 import AddAlbum from "./pages/AddAlbum";
 import AddSong from "./pages/AddSong";
@@ -21,7 +22,7 @@ const App = () => {
       <Route path="/register" element={<Register />} />
 
       {/* Dashboard */}
-      <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/dashboard" element={<DashboardHome />} />
 
       {/* Album Routes */}
       <Route path="/add-album" element={<AddAlbum />} />

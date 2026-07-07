@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -12,10 +13,9 @@ import {
 
 import api from "../services/api";
 import { meta } from "@eslint/js";
-// import { meta } from "eslint-plugin-react-hooks";
+import toast from "react-hot-toast";
 
 const Register = () => {
-
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -23,192 +23,100 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const handleRegister = async (e) => {
-
     e.preventDefault();
-   
+
     try {
-      
       await api.post("/api/auth/register", {
         name,
         email,
         password,
-        role: "ADMIN"
+        role: "ADMIN",
       });
 
-      alert("Registration Successful");
-
+      toast.success("Registration Successful 🎉");
       navigate("/");
-
     } catch (error) {
-
       console.log(error);
-
-      alert("Registration Failed");
+      toast.error("Registration Failed");
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-8 sm:px-6">
+      <div className="absolute -left-24 -top-24 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-green-500/20 blur-3xl"></div>
+      <div className="absolute -bottom-24 -right-24 h-72 w-72 sm:h-96 sm:w-96 rounded-full bg-emerald-400/10 blur-3xl"></div>
 
-      {/* Background Glow */}
-      <div className="absolute top-[-120px] left-[-120px] w-[400px] h-[400px] bg-green-500/20 blur-3xl rounded-full"></div>
-
-      <div className="absolute bottom-[-120px] right-[-120px] w-[400px] h-[400px] bg-emerald-400/10 blur-3xl rounded-full"></div>
-
-      {/* Register Card */}
       <form
         onSubmit={handleRegister}
-        className="relative z-10 w-full max-w-[500px] bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl p-10 flex flex-col gap-6"
+        className="relative z-10 w-full max-w-lg rounded-3xl border border-white/10 bg-white/5 p-6 sm:p-8 lg:p-10 backdrop-blur-2xl shadow-2xl"
       >
-
-        {/* Logo */}
-        <div className="flex flex-col items-center">
-
-          <div className="bg-green-500 p-4 rounded-full shadow-lg shadow-green-500/30">
-
-            <Music2 className="text-black w-10 h-10" />
-
+        <div className="flex flex-col items-center text-center">
+          <div className="rounded-full bg-green-500 p-3 sm:p-4 shadow-lg shadow-green-500/30">
+            <Music2 className="h-8 w-8 sm:h-10 sm:w-10 text-black" />
           </div>
 
-          <div className="flex items-center gap-2 mt-5">
-
-            <Sparkles className="text-green-400 w-6 h-6" />
-
-            <h1 className="text-4xl font-black text-white">
+          <div className="mt-5 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-green-400" />
+            <h1 className="text-3xl sm:text-4xl font-black text-white">
               Admin Register
             </h1>
-
           </div>
 
-          <p className="text-gray-400 mt-3 text-center max-w-sm">
+          <p className="mt-3 max-w-sm text-sm sm:text-base text-gray-400">
             Create your Musify admin account and manage your music platform professionally.
           </p>
-
         </div>
 
-        {/* Name */}
-        <div className="flex flex-col gap-2">
-
-          <label className="text-gray-300 text-sm font-medium">
-            Full Name
-          </label>
-
-          <div className="flex items-center bg-[#181818] border border-[#2a2a2a] focus-within:border-green-500 rounded-2xl px-4 transition-all duration-300">
-
-            <User className="text-green-400 w-5 h-5" />
-
-            <input
-              type="text"
-              placeholder="Enter full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full bg-transparent outline-none text-white p-4"
-              required
-            />
-
-          </div>
-
-        </div>
-
-        {/* Email */}
-        <div className="flex flex-col gap-2">
-
-          <label className="text-gray-300 text-sm font-medium">
-            Email Address
-          </label>
-
-          <div className="flex items-center bg-[#181818] border border-[#2a2a2a] focus-within:border-green-500 rounded-2xl px-4 transition-all duration-300">
-
-            <Mail className="text-green-400 w-5 h-5" />
-
-            <input
-              type="email"
-              placeholder="Enter email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-transparent outline-none text-white p-4"
-              required
-            />
-
-          </div>
-
-        </div>
-
-        {/* Password */}
-        <div className="flex flex-col gap-2">
-
-          <label className="text-gray-300 text-sm font-medium">
-            Password
-          </label>
-
-          <div className="flex items-center bg-[#181818] border border-[#2a2a2a] focus-within:border-green-500 rounded-2xl px-4 transition-all duration-300">
-
-            <LockKeyhole className="text-green-400 w-5 h-5" />
-
-            <input
-              type="password"
-              placeholder="Create secure password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-transparent outline-none text-white p-4"
-              required
-            />
-
-          </div>
-
-        </div>
-
-        {/* Security Card */}
-        <div className="bg-[#181818] border border-white/10 rounded-2xl p-5 flex items-center gap-4">
-
-          <div className="bg-green-500/20 p-3 rounded-2xl">
-
-            <ShieldCheck className="text-green-400 w-7 h-7" />
-
+        <div className="mt-8 space-y-6">
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">Full Name</label>
+            <div className="flex items-center rounded-2xl border border-[#2a2a2a] bg-[#181818] px-4 focus-within:border-green-500">
+              <User className="h-5 w-5 shrink-0 text-green-400"/>
+              <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter full name" className="w-full bg-transparent p-4 text-white outline-none" required/>
+            </div>
           </div>
 
           <div>
-
-            <h3 className="font-bold text-white">
-              Secure Registration
-            </h3>
-
-            <p className="text-gray-400 text-sm mt-1">
-              Your admin account will have full access to manage Musify content.
-            </p>
-
+            <label className="mb-2 block text-sm font-medium text-gray-300">Email Address</label>
+            <div className="flex items-center rounded-2xl border border-[#2a2a2a] bg-[#181818] px-4 focus-within:border-green-500">
+              <Mail className="h-5 w-5 shrink-0 text-green-400"/>
+              <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Enter email address" className="w-full bg-transparent p-4 text-white outline-none" required/>
+            </div>
           </div>
 
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">Password</label>
+            <div className="flex items-center rounded-2xl border border-[#2a2a2a] bg-[#181818] px-4 focus-within:border-green-500">
+              <LockKeyhole className="h-5 w-5 shrink-0 text-green-400"/>
+              <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} placeholder="Create secure password" className="w-full bg-transparent p-4 text-white outline-none" required/>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-start gap-4 rounded-2xl border border-white/10 bg-[#181818] p-5">
+            <div className="rounded-2xl bg-green-500/20 p-3">
+              <ShieldCheck className="h-7 w-7 text-green-400"/>
+            </div>
+            <div>
+              <h3 className="font-bold text-white">Secure Registration</h3>
+              <p className="mt-1 text-sm text-gray-400">
+                Your admin account will have full access to manage Musify content.
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" className="flex w-full items-center justify-center gap-3 rounded-2xl bg-green-500 py-4 text-base sm:text-lg font-bold text-black transition hover:bg-green-400">
+            <UserPlus className="h-5 w-5"/>
+            Create Admin Account
+          </button>
+
+          <p className="text-center text-sm sm:text-base text-gray-400">
+            Already have an account?
+            <Link to="/" className="ml-2 font-semibold text-green-400 hover:text-green-300">
+              Login
+            </Link>
+          </p>
         </div>
-
-        {/* Register Button */}
-        <button
-          type="submit"
-          className="bg-green-500 hover:bg-green-400 transition-all duration-300 text-black font-bold py-4 rounded-2xl shadow-2xl hover:shadow-green-500/30 text-lg flex items-center justify-center gap-3"
-        >
-
-          <UserPlus className="w-5 h-5" />
-
-          Create Admin Account
-
-        </button>
-
-        {/* Login */}
-        <p className="text-gray-400 text-center">
-
-          Already have an account?
-
-          <Link
-            to="/"
-            className="text-green-400 hover:text-green-300 ml-2 font-semibold"
-          >
-            Login
-          </Link>
-
-        </p>
-
       </form>
-
     </div>
   );
 };

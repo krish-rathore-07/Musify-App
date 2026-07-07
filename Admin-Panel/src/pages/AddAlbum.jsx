@@ -1,3 +1,5 @@
+
+import toast from "react-hot-toast";
 import { useState } from "react";
 import {
   ImagePlus,
@@ -11,12 +13,13 @@ import Dashboard from "./Dashboard";
 import api from "../services/api";
 
 const AddAlbum = () => {
-
+  // Keep your existing useState declarations here exactly as they are.
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [bgColor, setBgColor] = useState("#1DB954");
   const [imageFile, setImageFile] = useState(null);
 
+  // Keep your existing handleSubmit exactly as it is.
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -36,7 +39,7 @@ const AddAlbum = () => {
         },
       });
 
-      alert("Album Added Successfully");
+      toast.success("Album Added Successfully 🎵");
 
       setName("");
       setDesc("");
@@ -47,193 +50,128 @@ const AddAlbum = () => {
 
       console.log(error);
 
-      alert("Failed to add album");
+      toast.error("Failed to add album");
     }
   };
 
   return (
     <Dashboard>
+      <div className="min-h-screen bg-gradient-to-b from-[#121212] via-black to-[#0d0d0d] text-white px-4 py-6 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+          <div className="relative overflow-hidden rounded-3xl border border-green-500/10 bg-gradient-to-r from-green-500/20 via-emerald-400/10 to-transparent p-6 sm:p-8 lg:p-10 shadow-2xl">
+            <div className="absolute -top-16 -right-16 h-56 w-56 rounded-full bg-green-500/20 blur-3xl"></div>
 
-      <div className="min-h-screen bg-gradient-to-b from-[#121212] via-black to-[#0d0d0d] text-white p-6 md:p-10">
-
-        {/* Hero Section */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-green-500/20 via-emerald-400/10 to-transparent border border-green-500/10 p-10 mb-12 shadow-2xl">
-
-          {/* Glow */}
-          <div className="absolute -top-20 -right-20 w-72 h-72 bg-green-500/20 blur-3xl rounded-full"></div>
-
-          <div className="relative z-10">
-
-            <div className="flex items-center gap-3 mb-5">
-
-              <Sparkles className="text-green-400 w-8 h-8" />
-
-              <p className="uppercase tracking-[6px] text-green-400 text-sm font-semibold">
-                Admin Panel
-              </p>
-
-            </div>
-
-            <h1 className="text-5xl md:text-6xl font-black leading-tight">
-              Create A New <span className="text-green-400">Album</span>
-            </h1>
-
-            <p className="text-gray-400 text-lg mt-6 max-w-2xl leading-relaxed">
-              Upload stunning album covers, add descriptions, and organize your music beautifully.
-            </p>
-
-          </div>
-
-        </div>
-
-        {/* Form Card */}
-        <div className="max-w-3xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-8 md:p-10">
-
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-8"
-          >
-
-            {/* Album Name */}
-            <div>
-
-              <label className="flex items-center gap-2 text-lg font-semibold mb-3">
-
-                <Disc3 className="text-green-400 w-5 h-5" />
-
-                Album Name
-
-              </label>
-
-              <input
-                type="text"
-                placeholder="Enter album name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full bg-[#181818] border border-[#2a2a2a] focus:border-green-500 outline-none text-white p-4 rounded-2xl transition-all duration-300"
-                required
-              />
-
-            </div>
-
-            {/* Description */}
-            <div>
-
-              <label className="flex items-center gap-2 text-lg font-semibold mb-3">
-
-                <Sparkles className="text-green-400 w-5 h-5" />
-
-                Album Description
-
-              </label>
-
-              <textarea
-                placeholder="Write something about this album..."
-                value={desc}
-                onChange={(e) => setDesc(e.target.value)}
-                rows="5"
-                className="w-full bg-[#181818] border border-[#2a2a2a] focus:border-green-500 outline-none text-white p-4 rounded-2xl transition-all duration-300 resize-none"
-                required
-              />
-
-            </div>
-
-            {/* Color Picker */}
-            <div>
-
-              <label className="flex items-center gap-2 text-lg font-semibold mb-3">
-
-                <Palette className="text-green-400 w-5 h-5" />
-
-                Background Color
-
-              </label>
-
-              <div className="flex items-center gap-5 bg-[#181818] border border-[#2a2a2a] p-4 rounded-2xl">
-
-                <input
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="w-20 h-14 rounded-xl cursor-pointer border-none bg-transparent"
-                />
-
-                <div
-                  className="w-20 h-14 rounded-xl shadow-lg border border-white/10"
-                  style={{ backgroundColor: bgColor }}
-                ></div>
-
-                <p className="text-gray-400">
-                  Selected Color: {bgColor}
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-4">
+                <Sparkles className="text-green-400 w-7 h-7" />
+                <p className="uppercase tracking-[4px] text-green-400 text-xs sm:text-sm font-semibold">
+                  Admin Panel
                 </p>
-
               </div>
 
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-tight">
+                Create A New <span className="text-green-400">Album</span>
+              </h1>
+
+              <p className="mt-5 max-w-xl text-gray-400 text-base sm:text-lg leading-relaxed">
+                Upload stunning album covers, add descriptions, and organize your music beautifully.
+              </p>
             </div>
+          </div>
 
-            {/* Image Upload */}
-            <div>
-
-              <label className="flex items-center gap-2 text-lg font-semibold mb-3">
-
-                <ImagePlus className="text-green-400 w-5 h-5" />
-
-                Album Cover
-
-              </label>
-
-              <div className="relative border-2 border-dashed border-[#2a2a2a] hover:border-green-500 transition-all duration-300 rounded-3xl p-10 flex flex-col items-center justify-center bg-[#181818]">
-
-                <Upload className="text-green-400 w-14 h-14 mb-5" />
-
-                <p className="text-lg font-semibold mb-2">
-                  Upload Album Image
-                </p>
-
-                <p className="text-gray-400 text-sm mb-5">
-                  PNG, JPG or JPEG supported
-                </p>
+          <div className="w-full rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl p-5 sm:p-8 lg:p-10">
+            <form onSubmit={handleSubmit} className="space-y-7">
+              <div>
+                <label className="mb-3 flex items-center gap-2 font-semibold">
+                  <Disc3 className="w-5 h-5 text-green-400" />
+                  Album Name
+                </label>
 
                 <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImageFile(e.target.files[0])}
-                  className="text-gray-300"
+                  type="text"
+                  placeholder="Enter album name"
+                  value={name}
+                  onChange={(e)=>setName(e.target.value)}
+                  className="w-full rounded-2xl border border-[#2a2a2a] bg-[#181818] p-4 outline-none focus:border-green-500"
                   required
                 />
+              </div>
 
-                {imageFile && (
+              <div>
+                <label className="mb-3 flex items-center gap-2 font-semibold">
+                  <Sparkles className="w-5 h-5 text-green-400" />
+                  Album Description
+                </label>
 
-                  <div className="mt-6">
+                <textarea
+                  rows="5"
+                  value={desc}
+                  onChange={(e)=>setDesc(e.target.value)}
+                  className="w-full rounded-2xl border border-[#2a2a2a] bg-[#181818] p-4 resize-none outline-none focus:border-green-500"
+                  required
+                />
+              </div>
 
+              <div>
+                <label className="mb-3 flex items-center gap-2 font-semibold">
+                  <Palette className="w-5 h-5 text-green-400" />
+                  Background Color
+                </label>
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-[#2a2a2a] bg-[#181818] p-4">
+                  <input
+                    type="color"
+                    value={bgColor}
+                    onChange={(e)=>setBgColor(e.target.value)}
+                    className="h-14 w-full sm:w-20 cursor-pointer rounded-xl bg-transparent"
+                  />
+
+                  <div
+                    className="h-14 w-full sm:w-20 rounded-xl border border-white/10"
+                    style={{backgroundColor:bgColor}}
+                  />
+
+                  <p className="text-gray-400 break-all">{bgColor}</p>
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-3 flex items-center gap-2 font-semibold">
+                  <ImagePlus className="w-5 h-5 text-green-400" />
+                  Album Cover
+                </label>
+
+                <div className="rounded-3xl border-2 border-dashed border-[#2a2a2a] bg-[#181818] p-6 sm:p-10 text-center hover:border-green-500 transition">
+                  <Upload className="mx-auto mb-4 h-12 w-12 text-green-400" />
+
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e)=>setImageFile(e.target.files[0])}
+                    className="w-full text-sm text-gray-300"
+                    required
+                  />
+
+                  {imageFile && (
                     <img
                       src={URL.createObjectURL(imageFile)}
                       alt="preview"
-                      className="w-40 h-40 object-cover rounded-2xl shadow-2xl"
+                      className="mx-auto mt-6 h-36 w-36 sm:h-44 sm:w-44 rounded-2xl object-cover"
                     />
-
-                  </div>
-
-                )}
-
+                  )}
+                </div>
               </div>
 
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-green-500 hover:bg-green-400 transition-all duration-300 text-black font-bold py-5 rounded-2xl shadow-2xl hover:shadow-green-500/30 text-lg"
-            >
-              Add Album
-            </button>
-
-          </form>
-
+              <button
+                type="submit"
+                className="w-full rounded-2xl bg-green-500 py-4 font-bold text-black transition hover:bg-green-400"
+              >
+                Add Album
+              </button>
+            </form>
+          </div>
         </div>
-
       </div>
-
     </Dashboard>
   );
 };

@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import {
   Music2,
@@ -8,114 +9,73 @@ import {
 } from "lucide-react";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
 
   const logout = () => {
-
     localStorage.removeItem("user");
-
     navigate("/");
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-black/70 backdrop-blur-2xl border-b border-white/10 px-6 md:px-10 py-5 flex items-center justify-between shadow-2xl">
-
-      {/* Left Side */}
-      <div className="flex items-center gap-5">
-
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-
-          <div className="bg-green-500 p-3 rounded-2xl shadow-lg shadow-green-500/30">
-
-            <Music2 className="text-black w-7 h-7" />
-
+    <div className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-2xl shadow-2xl">
+      <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
+        {/* Left Side */}
+        <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+          <div className="rounded-2xl bg-green-500 p-2.5 sm:p-3 shadow-lg shadow-green-500/30">
+            <Music2 className="h-6 w-6 sm:h-7 sm:w-7 text-black" />
           </div>
 
-          <div>
-
+          <div className="min-w-0">
             <div className="flex items-center gap-2">
-
-              <h1 className="text-3xl font-black text-white">
+              <h1 className="truncate text-2xl sm:text-3xl font-black text-white">
                 Musify
               </h1>
-
-              <Sparkles className="text-green-400 w-5 h-5" />
-
+              <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-green-400" />
             </div>
 
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="mt-1 hidden text-xs sm:block sm:text-sm text-gray-400">
               Admin Dashboard
             </p>
-
           </div>
-
         </div>
 
-      </div>
+        {/* Right Side */}
+        <div className="flex items-center gap-2 sm:gap-4 lg:gap-5">
+          <button className="hidden md:flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-2xl border border-white/10 bg-[#181818] shadow-lg transition-all duration-300 hover:bg-[#252525]">
+            <Bell className="h-5 w-5 text-green-400" />
+          </button>
 
-      {/* Right Side */}
-      <div className="flex items-center gap-5">
-
-        {/* Notification */}
-        <button className="hidden md:flex w-12 h-12 rounded-2xl bg-[#181818] border border-white/10 items-center justify-center hover:bg-[#252525] transition-all duration-300 shadow-lg">
-
-          <Bell className="text-green-400 w-5 h-5" />
-
-        </button>
-
-        {/* User Info */}
-        <div className="hidden sm:flex items-center gap-4 bg-[#181818] border border-white/10 px-5 py-3 rounded-2xl shadow-lg">
-
-          {/* Avatar */}
-          <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-black font-black text-lg shadow-lg">
-
-            {user?.email?.charAt(0).toUpperCase()}
-
-          </div>
-
-          {/* User Details */}
-          <div>
-
-            <div className="flex items-center gap-2">
-
-              <h3 className="font-bold text-white">
-                Admin
-              </h3>
-
-              <ShieldCheck className="text-green-400 w-4 h-4" />
-
+          <div className="hidden lg:flex items-center gap-4 rounded-2xl border border-white/10 bg-[#181818] px-4 py-3 shadow-lg">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-green-500 text-lg font-black text-black shadow-lg">
+              {user?.email?.charAt(0).toUpperCase()}
             </div>
 
-            <p className="text-gray-400 text-sm">
-              {user?.email}
-            </p>
+            <div className="max-w-[180px]">
+              <div className="flex items-center gap-2">
+                <h3 className="font-bold text-white">Admin</h3>
+                <ShieldCheck className="h-4 w-4 text-green-400" />
+              </div>
 
+              <p className="truncate text-sm text-gray-400">
+                {user?.email}
+              </p>
+            </div>
           </div>
 
+          <button
+            onClick={logout}
+            className="flex items-center gap-2 sm:gap-3 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 px-3 py-2.5 sm:px-5 sm:py-3 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+          >
+            <LogOut className="h-5 w-5" />
+            <span className="hidden md:block">Logout</span>
+          </button>
         </div>
-
-        {/* Logout Button */}
-        <button
-          onClick={logout}
-          className="bg-gradient-to-r from-red-500 to-pink-500 hover:scale-105 transition-all duration-300 px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-3 font-bold"
-        >
-
-          <LogOut className="w-5 h-5" />
-
-          <span className="hidden md:block">
-            Logout
-          </span>
-
-        </button>
-
       </div>
-
     </div>
   );
 };
 
 export default Navbar;
+
